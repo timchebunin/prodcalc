@@ -46,11 +46,27 @@
   <link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.1.0/flexboxgrid2.css">
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800,900" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="./node_modules/politespace/dist/politespace.css">
+  <link rel="stylesheet" href="./node_modules/politespace/dist/libs/libs.css">
+  <script src="./node_modules/politespace/dist/libs/libs.js"></script>
+  <script src="./node_modules/politespace/dist/politespace.js"></script>
+  <script src="./node_modules/politespace/dist/politespace-init.js"></script>
+  <script>
+    jQuery(function () {
+      jQuery(document).trigger("enhance");
+    });
+  </script>
+
+
+  <script src="./node_modules/autosize-input/index.js"></script>
+
+
 </head>
 
 
 <body>
-
 
   <main>
     <div class="container">
@@ -58,10 +74,11 @@
         <div class="row">
           <div class="col-xs-12 col-md-6">
             <p class="caption">Первая оценка</p>
-            <p class="input">78.23%</p>
+            <input type="number" id="T1" placeholder="54.48">
 
             <p class="caption">на выборке</p>
-            <p class="input">10 000</p>
+            <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
+              data-politespace-decimal-mark="." placeholder="12 000">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
             <p class="input">±0.57%</p>
@@ -69,10 +86,11 @@
           </div>
           <div class="col-xs-12 col-md-6">
             <p class="caption">Вторая оценка</p>
-            <p class="input">63.35%</p>
+            <input type="number" id="T2" placeholder="63.35">
 
             <p class="caption">на выборке</p>
-            <p class="input">28 300</p>
+            <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
+              data-politespace-decimal-mark="." placeholder="28 300">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
             <p class="input">±0.30%</p>
@@ -113,6 +131,11 @@
           </div>
         </div>
       </div>
+
+
+
+
+
     </div>
 
 
