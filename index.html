@@ -59,8 +59,7 @@
     });
   </script>
 
-
-  <script src="./node_modules/autosize-input/index.js"></script>
+  <script src="./node_modules/mathjs/dist/math.js" type="text/javascript"></script>
 
 
 </head>
@@ -74,31 +73,31 @@
         <div class="row">
           <div class="col-xs-12 col-md-6">
             <p class="caption">Первая оценка в процентах</p>
-            <input type="number" id="T1" placeholder="00.00">
+            <input type="number" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
 
             <p class="caption">на выборке</p>
             <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="0 000">
+              data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
             <div>
               <span class="input">±</span>
-              <output id="totalamount" type="number" class="small">0.00</output>
+              <output id="result_Q1" type="number" class="small">0.00</output>
             </div>
 
           </div>
           <div class="col-xs-12 col-md-6">
             <p class="caption">Вторая оценка в процентах</p>
-            <input type="number" id="T2" placeholder="00.00">
+            <input type="number" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
 
             <p class="caption">на выборке</p>
             <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="0 000">
+              data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
             <div>
               <span class="input">±</span>
-              <output id="tax" type="number" class="small">0.00</output>
+              <output id="result_Q2" type="number" class="small">0.00</output>
             </div>
 
 
@@ -144,25 +143,46 @@
         </div>
       </div>
 
-
-      <input id="amount" type="number" onKeyPress="OgKeyPress()" onKeyUp="OgKeyPress()">
-      <br>
-      <output id="tax" type="number"></output>
-      <br>
-      <output id="totalamount" type="number"></output>
-
-
       <script>
 
-        function OgKeyPress() {
-          var amount = document.getElementById("amount");
-          var s = amount.value;
+        function confidenceInterval1() {
 
-          var tax = document.getElementById("tax");
-          tax.value = Number(s) * (4 / 100);
+          var TField = document.getElementById("T1").value.replace(",", ".");
+          var T = Number(TField) / 100;
 
-          var totalamount = document.getElementById("totalamount");
-          totalamount.value = Number(s) + Number(s * (4 / 100));
+          var NField = document.getElementById("N1");
+          var N = Number(NField.value);
+
+          var resultQ = document.getElementById("result_Q1");
+
+          if (T > 0 && T < 1 && N > 0) {
+            var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
+            resultQ.value = Number.parseFloat(tempQ).toPrecision(2);
+
+          } else {
+            resultQ.value = Number.parseFloat(0).toPrecision(3);
+          }
+
+        }
+
+        function confidenceInterval2() {
+
+          var TField = document.getElementById("T2").value.replace(",", ".");
+          var T = Number(TField) / 100;
+
+          var NField = document.getElementById("N2");
+          var N = Number(NField.value);
+
+          var resultQ = document.getElementById("result_Q2");
+
+          if (T > 0 && T < 1 && N > 0) {
+            var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
+            resultQ.value = Number.parseFloat(tempQ).toPrecision(2);
+
+          } else {
+            resultQ.value = Number.parseFloat(0).toPrecision(3);
+          }
+
         }
       </script>
 
