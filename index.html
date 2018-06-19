@@ -104,7 +104,7 @@
           </div>
 
           <div class="col-xs-12">
-            <p class="caption" style="text-align: center; margin-top: 10px">θ разницы оценок</p>
+            <p class="caption" style="text-align: center; margin-top: 50px">θ разницы оценок</p>
             <div style="text-align: center">
               <output id="tax" type="number" class="big">0.00</output>
               <span class="result">; </span>
@@ -157,7 +157,7 @@
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
-            resultQ.value = Number.parseFloat(tempQ).toPrecision(2);
+            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
 
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
@@ -177,7 +177,7 @@
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
-            resultQ.value = Number.parseFloat(tempQ).toPrecision(2);
+            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
 
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
