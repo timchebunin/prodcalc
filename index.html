@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-119878544-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-119878544-1');
+  </script>
+   -->
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+
+  <title>ProdCalc</title>
+  <meta name="keywords" content="статистическа значимость, калькулятор, продакт, выборка">
+
+
+  <meta data-react-helmet="true" property="og:title" content="ProdCalc">
+  <meta data-react-helmet="true" name="description" content="Калькулятор для расчета статистической значимости и других параметров с курса Simulator Go Practice">
+  <meta data-react-helmet="true" property="og:description" content="Калькулятор для расчета статистической значимости и других параметров с курса Simulator Go Practice">
+  <meta data-react-helmet="true" property="og:url" content="https://prodcalc.io">
+  <meta data-react-helmet="true" property="og:image" content="https://prodcalc.io/media/main-cover-fb.png">
+  <meta data-react-helmet="true" property="vk:image" content="https://prodcalc.io/media/main-cover-fb.png">
+  <link data-react-helmet="true" rel="canonical" href="https://prodcalc.io">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+
+  <link rel="author" href="https://prodcalc.io">
+  <link rel="publisher" href="https://prodcalc.io">
+  <link rel="apple-touch-icon" sizes="180x180" href="./media/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./media/favicon-16x16.png">
+  <link rel="mask-icon" href="./media/safari-pinned-tab.svg" color="#000000">
+
+  <link rel="stylesheet" type="text/css" href="./css/main.css">
+  <link rel="stylesheet" type="text/css" href="./css/text_styles.css">
+  <link rel="stylesheet" type="text/css" href="./css/nav_styles.css">
+
+  <link rel="stylesheet" href="https://unpkg.com/flexboxgrid2@7.1.0/flexboxgrid2.css">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800,900" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+  <main>
+    <div class="container">
+      <div class="background_red">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <p class="caption">Первая оценка</p>
+            <p class="input">78.23%</p>
+
+            <p class="caption">на выборке</p>
+            <p class="input">10 000</p>
+
+            <p class="caption">с уровнем доверия 95% даёт θ</p>
+            <p class="input">±0.57%</p>
+
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <p class="caption">Вторая оценка</p>
+            <p class="input">63.35%</p>
+
+            <p class="caption">на выборке</p>
+            <p class="input">28 300</p>
+
+            <p class="caption">с уровнем доверия 95% даёт θ</p>
+            <p class="input">±0.30%</p>
+
+          </div>
+
+          <div class="col-xs-12">
+            <p class="caption" style="text-align: center; margin-top: 10px">θ разницы оценок</p>
+            <p class="result">-0.07%; 1.25%</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="background_gray">
+            <p class="caption">Чтобы получить θ</p>
+            <p class="input">±0.57%</p>
+
+            <p class="caption">для оценки</p>
+            <p class="input">78.23%</p>
+
+            <p class="caption">нужна выборка</p>
+            <p class="result" style="text-align: left;">1 230</p>
+          </div>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+          <div class="background_gray">
+            <p class="caption">Чтобы протестировать оценку</p>
+            <p class="input">74%</p>
+
+            <p class="caption">на изменение с мощностью 80%</p>
+            <p class="input">±2%</p>
+
+            <p class="caption">нужна выборка</p>
+            <p class="result" style="text-align: left;">15 300</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+  </main>
+  <footer>
+
+  </footer>
+</body>
+
+</html>

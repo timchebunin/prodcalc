@@ -1,6 +1,6 @@
 # Calculator for product managers
 
-Redesign and combination of existed calculators used in [Simulator course for produc managers by Oleg Yakubenkov](https://simulator.gopractice.ru/).
+Redesign and combination of existed calculators used in [Simulator course for product managers](https://simulator.gopractice.ru/) by [Oleg Yakubenkov](https://www.facebook.com/lohmatyi312).
 
 Performs calculations using native JS:
 
