@@ -73,45 +73,57 @@
       <div class="background_red">
         <div class="row">
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Первая оценка</p>
-            <input type="number" id="T1" placeholder="54.48">
+            <p class="caption">Первая оценка в процентах</p>
+            <input type="number" id="T1" placeholder="00.00">
 
             <p class="caption">на выборке</p>
             <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="12 000">
+              data-politespace-decimal-mark="." placeholder="0 000">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
-            <p class="input">±0.57%</p>
+            <div>
+              <span class="input">±</span>
+              <output id="totalamount" type="number" class="small">0.00</output>
+            </div>
 
           </div>
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Вторая оценка</p>
-            <input type="number" id="T2" placeholder="63.35">
+            <p class="caption">Вторая оценка в процентах</p>
+            <input type="number" id="T2" placeholder="00.00">
 
             <p class="caption">на выборке</p>
             <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="28 300">
+              data-politespace-decimal-mark="." placeholder="0 000">
 
             <p class="caption">с уровнем доверия 95% даёт θ</p>
-            <p class="input">±0.30%</p>
+            <div>
+              <span class="input">±</span>
+              <output id="tax" type="number" class="small">0.00</output>
+            </div>
+
 
           </div>
 
           <div class="col-xs-12">
             <p class="caption" style="text-align: center; margin-top: 10px">θ разницы оценок</p>
-            <p class="result">-0.07%; 1.25%</p>
+            <div style="text-align: center">
+              <output id="tax" type="number" class="big">0.00</output>
+              <span class="result">; </span>
+              <output id="totalamount" type="number" class="big">0.00</output>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <div class="background_gray">
+          <div class="background_red">
             <p class="caption">Чтобы получить θ</p>
-            <p class="input">±0.57%</p>
+            <input type="number" id="Q1" placeholder="00.00">
 
-            <p class="caption">для оценки</p>
-            <p class="input">78.23%</p>
+
+            <p class="caption">для оценки в процентах</p>
+            <input type="number" id="QT1" placeholder="00.00">
 
             <p class="caption">нужна выборка</p>
             <p class="result" style="text-align: left;">1 230</p>
@@ -119,18 +131,40 @@
         </div>
 
         <div class="col-xs-12 col-md-6">
-          <div class="background_gray">
-            <p class="caption">Чтобы протестировать оценку</p>
-            <p class="input">74%</p>
+          <div class="background_red">
+            <p class="caption">Для теста оценки в процентах</p>
+            <input type="number" id="QT2" placeholder="00.00">
 
-            <p class="caption">на изменение с мощностью 80%</p>
-            <p class="input">±2%</p>
+            <p class="caption">на изменение в процентных пунктах</p>
+            <input type="number" id="Q2" placeholder="00.00">
 
             <p class="caption">нужна выборка</p>
             <p class="result" style="text-align: left;">15 300</p>
           </div>
         </div>
       </div>
+
+
+      <input id="amount" type="number" onKeyPress="OgKeyPress()" onKeyUp="OgKeyPress()">
+      <br>
+      <output id="tax" type="number"></output>
+      <br>
+      <output id="totalamount" type="number"></output>
+
+
+      <script>
+
+        function OgKeyPress() {
+          var amount = document.getElementById("amount");
+          var s = amount.value;
+
+          var tax = document.getElementById("tax");
+          tax.value = Number(s) * (4 / 100);
+
+          var totalamount = document.getElementById("totalamount");
+          totalamount.value = Number(s) + Number(s * (4 / 100));
+        }
+      </script>
 
 
 
