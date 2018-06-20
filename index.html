@@ -72,7 +72,7 @@
       <div class="background_red">
         <div class="row">
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Первая оценка</p>
+            <p class="caption">Для первой оценки</p>
             <div style="max-width: 100%;">
               <div class="resizing-input">
                 <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
@@ -86,7 +86,7 @@
             <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
               data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
 
-            <p class="caption">с уровнем доверия 95% даёт θ</p>
+            <p class="caption">доверительный интервал</p>
             <div>
               <span class="input">±</span>
               <output id="result_Q1" type="number" class="small">0.00</output>
@@ -95,7 +95,7 @@
 
           </div>
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Вторая оценка</p>
+            <p class="caption">Для второй оценки</p>
             <div style="max-width: 100%;">
               <div class="resizing-input">
                 <input type="number" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
@@ -109,7 +109,7 @@
             <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
               data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
 
-            <p class="caption">с уровнем доверия 95% даёт θ</p>
+            <p class="caption">доверительный интервал</p>
             <div>
               <span class="input">±</span>
               <output id="result_Q2" type="number" class="small">0.00</output>
@@ -120,11 +120,11 @@
           </div>
 
           <div class="col-xs-12">
-            <p class="caption" style="text-align: center; margin-top: 50px">θ разницы оценок</p>
+            <p class="caption" style="text-align: center; margin-top: 50px">Доверительный интервал разницы</p>
             <div style="text-align: center">
-              <output id="tax" type="number" class="big">0.00</output>
+              <output id="result_difference1" type="number" class="big">0.00</output>
               <span class="result">; </span>
-              <output id="totalamount" type="number" class="big">0.00</output>
+              <output id="result_difference2" type="number" class="big">0.00</output>
             </div>
           </div>
         </div>
@@ -160,7 +160,9 @@
       </div>
 
       <script>
+        //if you change anything here I will find and kill you! Do you hear me?!
 
+        // Confidence Interval ------------------------------------------
         function confidenceInterval1() {
 
           var TField = document.getElementById("T1").value.replace(",", ".");
@@ -200,19 +202,14 @@
           }
 
         }
-      </script>
+        // Confidence Interval ------------------------------------------
 
-      <div style="max-width: 100%;">
-        <div class="resizing-input">
-          First:
-          <input type="text" placeholder="placeholder" />
-          <span class="input" style="display: none;"></span>
-        </div>
-        <span class="input">%</span>
-      </div>
+        // Difference ------------------------------------------
 
 
-      <script>
+        // Difference ------------------------------------------
+
+        // Fluid unput width ------------------------------------------
         $(document).ready(function () {
           var $inputs = $('.resizing-input');
 
@@ -249,6 +246,7 @@
             resizeForText.call($this, $this.val())
           });
         });
+        // Fluid unput width ------------------------------------------
       </script>
 
 
