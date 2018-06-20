@@ -25,15 +25,15 @@
   <meta data-react-helmet="true" property="og:title" content="ProdCalc">
   <meta data-react-helmet="true" name="description" content="Калькулятор для расчета статистической значимости и других параметров с курса Simulator Go Practice">
   <meta data-react-helmet="true" property="og:description" content="Калькулятор для расчета статистической значимости и других параметров с курса Simulator Go Practice">
-  <meta data-react-helmet="true" property="og:url" content="https://prodcalc.io">
-  <meta data-react-helmet="true" property="og:image" content="https://prodcalc.io/media/main-cover-fb.png">
-  <meta data-react-helmet="true" property="vk:image" content="https://prodcalc.io/media/main-cover-fb.png">
-  <link data-react-helmet="true" rel="canonical" href="https://prodcalc.io">
+  <meta data-react-helmet="true" property="og:url" content="https://prodcalc.app">
+  <meta data-react-helmet="true" property="og:image" content="https://prodcalc.app/media/main-cover-fb.png">
+  <meta data-react-helmet="true" property="vk:image" content="https://prodcalc.app/media/main-cover-fb.png">
+  <link data-react-helmet="true" rel="canonical" href="https://prodcalc.app">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ru_RU">
 
-  <link rel="author" href="https://prodcalc.io">
-  <link rel="publisher" href="https://prodcalc.io">
+  <link rel="author" href="https://prodcalc.app">
+  <link rel="publisher" href="https://prodcalc.app">
   <link rel="apple-touch-icon" sizes="180x180" href="./media/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./media/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./media/favicon-16x16.png">
@@ -58,8 +58,6 @@
       jQuery(document).trigger("enhance");
     });
   </script>
-
-  <script src="./node_modules/mathjs/dist/math.js" type="text/javascript"></script>
 
 
 </head>
@@ -134,15 +132,31 @@
       <div class="row">
         <div class="col-xs-12 col-md-6">
           <div class="background">
-            <p class="caption">Чтобы получить θ</p>
-            <input type="number" id="Q1" placeholder="00.00">
+            <p class="caption">Чтобы получить доверительный интервал</p>
+            <div style="max-width: 100%;">
+              <span class="input">±</span>
+              <div class="resizing-input">
+                <input type="number" id="Q1" placeholder="00.00" onKeyPress="sampleSize()" onKeyUp="sampleSize()">
+                <span class="widthspan"></span>
+              </div>
+              <span class="input"> п.п.</span>
+            </div>
 
 
-            <p class="caption">для оценки в процентах</p>
-            <input type="number" id="QT1" placeholder="00.00">
+
+            <p class="caption">для оценки</p>
+            <div style="max-width: 100%;">
+              <div class="resizing-input">
+                <input type="number" id="QT1" placeholder="00.00" onKeyPress="sampleSize()" onKeyUp="sampleSize()">
+                <span class="widthspan"></span>
+              </div>
+              <span class="input">%</span>
+            </div>
+
 
             <p class="caption">нужна выборка</p>
-            <p class="result" style="text-align: left;">1 230</p>
+            <input type="number" id="result_sampleSize" class="big" data-politespace data-politespace-grouplength="3" data-politespace-reverse
+              data-politespace-delimiter=" " data-politespace-decimal-mark="." placeholder="0"></input>
           </div>
         </div>
 
@@ -162,6 +176,13 @@
 
       <script>
         //if you change anything here I will find and kill you! Do you hear me?!
+        function sampleSize() {
+          var result = document.getElementById("result_sampleSize");
+          result.value = 10000;
+
+
+          simulateEvent.simulate(result, 'focusout');
+        }
 
         // Confidence Interval ------------------------------------------
         function difference() {
