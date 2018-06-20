@@ -12,47 +12,23 @@ body {
   color: #000000;
 
   margin: 0px;
-  padding-top: 50px;
-  padding-bottom: 70px;
+  padding-top: 20px;
+  padding-bottom: 30px;
   font-family: "Fira Sans", sans-serif;
 }
 .background {
   background-color: #f7f7f7;
   border-radius: 15px;
   margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
+  padding: 30px 20px 40px 20px;
   max-width: 100%;
 }
-
-input {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 700;
-  font-size: 3rem;
-  margin: 0 0 40px 0;
-
-  border: none;
-  border-bottom: solid 3px rgba(0, 0, 0, 0.5);
-  background-color: rgba(255, 255, 255, 0);
-  padding: 0;
-}
-textarea:focus,
-input:focus {
-  outline: none;
-}
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-.widthspan {
-  font-family: "Fira Sans", sans-serif;
-  font-weight: 700;
-  font-size: 3rem;
-  margin: 0 0 40px 0;
-  display: none;
-}
-.resizing-input {
-  display: inline;
-  max-width: 90%;
+@media only screen and (min-width: 768px) {
+  body {
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+  .background {
+    padding: 50px 40px 60px 40px;
+  }
 }

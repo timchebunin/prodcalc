@@ -73,27 +73,29 @@
       <div class="background" id="backgroud">
         <div class="row">
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Для первой оценки</p>
             <div style="max-width: 100%;">
-              <div class="resizing-input">
-                <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
-                <span class="widthspan"></span>
+              <p class="caption">Для первой оценки</p>
+              <div style="max-width: 100%;">
+                <div class="resizing-input">
+                  <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+                  <span class="widthspan"></span>
+                </div>
+                <span class="input">%</span>
               </div>
-              <span class="input">%</span>
+
+
+
+              <p class="caption">на выборке</p>
+              <input type="text" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
+                data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+
+              <p class="caption">доверительный интервал</p>
+              <div class="outputdiv">
+                <span class="input">±</span>
+                <output id="Q1_result" type="number" class="small">0.00</output>
+                <span class="input"> п.п.</span>
+              </div>
             </div>
-
-
-            <p class="caption">на выборке</p>
-            <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
-
-            <p class="caption">доверительный интервал</p>
-            <div>
-              <span class="input">±</span>
-              <output id="Q1_result" type="number" class="small">0.00</output>
-              <span class="input"> п.п.</span>
-            </div>
-
           </div>
           <div class="col-xs-12 col-md-6">
             <p class="caption">Для второй оценки</p>
@@ -107,11 +109,11 @@
 
 
             <p class="caption">на выборке</p>
-            <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
+            <input type="text" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
               data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
 
             <p class="caption">доверительный интервал</p>
-            <div>
+            <div class="outputdiv">
               <span class="input">±</span>
               <output id="Q2_result" type="number" class="small">0.00</output>
               <span class="input"> п.п.</span>
@@ -121,7 +123,7 @@
           </div>
 
           <div class="col-xs-12">
-            <p class="caption" style="text-align: center; margin-top: 50px">Доверительный интервал разницы</p>
+            <p class="caption" style="text-align: center;">Доверительный интервал разницы</p>
             <div style="text-align: center">
               <output id="difference_result1" type="number" class="big">0.00</output>
               <span class="result">%; </span>
@@ -229,10 +231,10 @@
 
         // Confidence Interval ------------------------------------------
         function difference() {
-          var Q1 = Number(document.getElementById("Q1_result").value) / 100;
-          var Q2 = Number(document.getElementById("Q2_result").value) / 100;
-          var N1 = Number(document.getElementById("N1").value);
-          var N2 = Number(document.getElementById("N2").value);
+          var Q1 = Number(document.getElementById("Q1_result").value.replace(",", ".")) / 100;
+          var Q2 = Number(document.getElementById("Q2_result").value.replace(",", ".")) / 100;
+          var N1 = parseFloat(document.getElementById("N1").value.replace(" ", ""));
+          var N2 = parseFloat(document.getElementById("N2").value.replace(" ", ""));
           var T1 = Number(document.getElementById("T1").value.replace(",", ".")) / 100;
           var T2 = Number(document.getElementById("T2").value.replace(",", ".")) / 100;
 
@@ -241,6 +243,10 @@
 
           if (Q1 > 0 && Q1 < 1 && Q2 > 0 && Q2 < 1) {
             var tempL = Number((T2 - T1) - (zValue * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
+            console.log("T1 " + T1)
+            console.log("N1 " + N1)
+            console.log("zValue " + zValue)
+            console.log("tempL " + tempL)
             var tempR = Number((T2 - T1) + (zValue * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
 
             resultL.value = Number.parseFloat(tempL * 100).toPrecision(2);
