@@ -72,8 +72,15 @@
       <div class="background_red">
         <div class="row">
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Первая оценка в процентах</p>
-            <input type="number" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+            <p class="caption">Первая оценка</p>
+            <div style="max-width: 100%;">
+              <div class="resizing-input">
+                <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+                <span class="input" style="display: none;"></span>
+              </div>
+              <span class="input">%</span>
+            </div>
+
 
             <p class="caption">на выборке</p>
             <input type="number" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
@@ -83,12 +90,20 @@
             <div>
               <span class="input">±</span>
               <output id="result_Q1" type="number" class="small">0.00</output>
+              <span class="input"> п.п.</span>
             </div>
 
           </div>
           <div class="col-xs-12 col-md-6">
-            <p class="caption">Вторая оценка в процентах</p>
-            <input type="number" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
+            <p class="caption">Вторая оценка</p>
+            <div style="max-width: 100%;">
+              <div class="resizing-input">
+                <input type="number" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
+                <span class="input" style="display: none;"></span>
+              </div>
+              <span class="input">%</span>
+            </div>
+
 
             <p class="caption">на выборке</p>
             <input type="number" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
@@ -98,6 +113,7 @@
             <div>
               <span class="input">±</span>
               <output id="result_Q2" type="number" class="small">0.00</output>
+              <span class="input"> п.п.</span>
             </div>
 
 
@@ -186,7 +202,54 @@
         }
       </script>
 
+      <div style="max-width: 100%;">
+        <div class="resizing-input">
+          First:
+          <input type="text" placeholder="placeholder" />
+          <span class="input" style="display: none;"></span>
+        </div>
+        <span class="input">%</span>
+      </div>
 
+
+      <script>
+        $(document).ready(function () {
+          var $inputs = $('.resizing-input');
+
+          // Resize based on text if text.length > 0
+          // Otherwise resize based on the placeholder
+          function resizeForText(text) {
+            var $this = $(this);
+            if (!text.trim()) {
+              text = $this.attr('placeholder').trim();
+            }
+            var $span = $this.parent().find('span');
+            $span.text(text);
+            var $inputSize = $span.width();
+            $this.css("width", $inputSize);
+          }
+
+          $inputs.find('input').keypress(function (e) {
+            if (e.which && e.charCode) {
+              var c = String.fromCharCode(e.keyCode | e.charCode);
+              var $this = $(this);
+              resizeForText.call($this, $this.val() + c);
+            }
+          });
+
+          // Backspace event only fires for keyup
+          $inputs.find('input').keyup(function (e) {
+            if (e.keyCode === 8 || e.keyCode === 46) {
+              resizeForText.call($(this), $(this).val());
+            }
+          });
+
+          $inputs.find('input').each(function () {
+            var $this = $(this);
+            resizeForText.call($this, $this.val())
+          });
+        });
+      </script>
 
 
 
