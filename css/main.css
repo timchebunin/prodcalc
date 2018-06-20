@@ -12,25 +12,23 @@ body {
   color: #000000;
 
   margin: 0px;
-  padding-top: 50px;
-  padding-bottom: 70px;
+  padding-top: 20px;
+  padding-bottom: 30px;
   font-family: "Fira Sans", sans-serif;
 }
-.background_gray {
+.background {
   background-color: #f7f7f7;
   border-radius: 15px;
   margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
+  padding: 30px 20px 40px 20px;
+  max-width: 100%;
 }
-.background_red {
-  background-color: #ffefeb;
-  border-radius: 15px;
-  margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
-}
-.background_green {
-  background-color: #eeffeb;
-  border-radius: 15px;
-  margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
+@media only screen and (min-width: 768px) {
+  body {
+    padding-top: 50px;
+    padding-bottom: 70px;
+  }
+  .background {
+    padding: 50px 40px 60px 40px;
+  }
 }

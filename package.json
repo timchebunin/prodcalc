@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "mathjs": "^5.0.0",
+    "politespace": "^1.0.2"
+  },
+  "devDependencies": {}
+}

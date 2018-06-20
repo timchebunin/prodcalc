@@ -1,17 +1,98 @@
 .caption {
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1rem;
   opacity: 0.5;
   margin: 0;
 }
 .input {
-  font-weight: 700;
-  font-size: 3rem;
-  margin: 0 0 40px 0;
+  font-weight: 500;
+  font-size: 2rem;
+  margin: 0 0 30px 0;
 }
 .result {
-  font-weight: 800;
-  font-size: 5rem;
+  font-weight: 500;
+  font-size: 3rem;
   margin: 0;
   text-align: center;
+}
+output.big {
+  font-weight: 800;
+  font-size: 3rem;
+  margin: 0;
+  text-align: center;
+}
+output.small {
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 30px 0;
+}
+
+input {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 30px 0;
+
+  border: none;
+  border-bottom: solid 3px rgba(0, 0, 0, 0.5);
+  background-color: rgba(255, 255, 255, 0);
+  padding: 0;
+  max-width: 100%;
+}
+textarea:focus,
+input:focus {
+  outline: none;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.widthspan {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  margin: 0 0 30px 0;
+  display: none;
+}
+.resizing-input {
+  display: inline;
+  max-width: 90%;
+}
+.outputdiv {
+  max-width: 100%;
+  margin: 0 0 50px 0;
+}
+
+@media only screen and (min-width: 768px) {
+  input {
+    font-size: 3rem;
+    margin: 0 0 40px 0;
+  }
+  .widthspan {
+    font-size: 3rem;
+    margin: 0 0 40px 0;
+  }
+  .caption {
+    font-size: 1.5rem;
+  }
+  .input {
+    font-size: 3rem;
+    margin: 0 0 40px 0;
+  }
+  .result {
+    font-size: 5rem;
+  }
+  output.big {
+    font-size: 5rem;
+  }
+  output.small {
+    font-size: 3rem;
+    margin: 0 0 40px 0;
+  }
+  .outputdiv {
+    max-width: 100%;
+    margin: 0 0 60px 0;
+  }
 }
