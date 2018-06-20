@@ -69,14 +69,14 @@
 
   <main>
     <div class="container">
-      <div class="background_red">
+      <div class="background" id="backgroud">
         <div class="row">
           <div class="col-xs-12 col-md-6">
             <p class="caption">Для первой оценки</p>
             <div style="max-width: 100%;">
               <div class="resizing-input">
                 <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
-                <span class="input" style="display: none;"></span>
+                <span class="widthspan"></span>
               </div>
               <span class="input">%</span>
             </div>
@@ -98,8 +98,8 @@
             <p class="caption">Для второй оценки</p>
             <div style="max-width: 100%;">
               <div class="resizing-input">
-                <input type="number" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
-                <span class="input" style="display: none;"></span>
+                <input type="text" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
+                <span class="widthspan"></span>
               </div>
               <span class="input">%</span>
             </div>
@@ -123,8 +123,9 @@
             <p class="caption" style="text-align: center; margin-top: 50px">Доверительный интервал разницы</p>
             <div style="text-align: center">
               <output id="result_difference1" type="number" class="big">0.00</output>
-              <span class="result">; </span>
+              <span class="result">%; </span>
               <output id="result_difference2" type="number" class="big">0.00</output>
+              <span class="result">%</span>
             </div>
           </div>
         </div>
@@ -132,7 +133,7 @@
 
       <div class="row">
         <div class="col-xs-12 col-md-6">
-          <div class="background_red">
+          <div class="background">
             <p class="caption">Чтобы получить θ</p>
             <input type="number" id="Q1" placeholder="00.00">
 
@@ -146,7 +147,7 @@
         </div>
 
         <div class="col-xs-12 col-md-6">
-          <div class="background_red">
+          <div class="background">
             <p class="caption">Для теста оценки в процентах</p>
             <input type="number" id="QT2" placeholder="00.00">
 
@@ -163,19 +164,48 @@
         //if you change anything here I will find and kill you! Do you hear me?!
 
         // Confidence Interval ------------------------------------------
+        function difference() {
+          var Q1 = Number(document.getElementById("result_Q1").value) / 100;
+          var Q2 = Number(document.getElementById("result_Q2").value) / 100;
+          var N1 = Number(document.getElementById("N1").value);
+          var N2 = Number(document.getElementById("N2").value);
+          var T1 = Number(document.getElementById("T1").value.replace(",", ".")) / 100;
+          var T2 = Number(document.getElementById("T2").value.replace(",", ".")) / 100;
+
+          var resultL = document.getElementById("result_difference1");
+          var resultR = document.getElementById("result_difference2");
+
+          if (Q1 > 0 && Q1 < 1 && Q2 > 0 && Q2 < 1) {
+            var tempL = Number((T2 - T1) - (1.96 * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
+            var tempR = Number((T2 - T1) + (1.96 * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
+
+            resultL.value = Number.parseFloat(tempL * 100).toPrecision(2);
+            resultR.value = Number.parseFloat(tempR * 100).toPrecision(2);
+
+            var backgroud = document.getElementById("backgroud");
+
+            if (tempL < 0 && tempR > 0) {
+              backgroud.style.backgroundColor = "#ffefeb"
+            } else {
+              backgroud.style.backgroundColor = "#eeffeb"
+            }
+
+          } else {
+            resultL.value = Number.parseFloat(0).toPrecision(3);
+            resultR.value = Number.parseFloat(0).toPrecision(3);
+          }
+        }
+
         function confidenceInterval1() {
-
-          var TField = document.getElementById("T1").value.replace(",", ".");
-          var T = Number(TField) / 100;
-
-          var NField = document.getElementById("N1");
-          var N = Number(NField.value);
+          var T = Number(document.getElementById("T1").value.replace(",", ".")) / 100;
+          var N = Number(document.getElementById("N1").value);
 
           var resultQ = document.getElementById("result_Q1");
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
             resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
+            difference.call();
 
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
@@ -184,30 +214,24 @@
         }
 
         function confidenceInterval2() {
-
-          var TField = document.getElementById("T2").value.replace(",", ".");
-          var T = Number(TField) / 100;
-
-          var NField = document.getElementById("N2");
-          var N = Number(NField.value);
+          var T = Number(document.getElementById("T2").value.replace(",", ".")) / 100;
+          var N = Number(document.getElementById("N2").value);
 
           var resultQ = document.getElementById("result_Q2");
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(1.96 * math.sqrt(T * (1 - T) / N));
             resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
-
+            difference.call();
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
           }
 
         }
+
+
         // Confidence Interval ------------------------------------------
 
-        // Difference ------------------------------------------
-
-
-        // Difference ------------------------------------------
 
         // Fluid unput width ------------------------------------------
         $(document).ready(function () {

@@ -16,24 +16,14 @@ body {
   padding-bottom: 70px;
   font-family: "Fira Sans", sans-serif;
 }
-.background_gray {
+.background {
   background-color: #f7f7f7;
   border-radius: 15px;
   margin: 0 0 16px 0;
   padding: 50px 40px 60px 40px;
+  max-width: 100%;
 }
-.background_red {
-  background-color: #ffefeb;
-  border-radius: 15px;
-  margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
-}
-.background_green {
-  background-color: #eeffeb;
-  border-radius: 15px;
-  margin: 0 0 16px 0;
-  padding: 50px 40px 60px 40px;
-}
+
 input {
   font-family: "Fira Sans", sans-serif;
   font-weight: 700;
