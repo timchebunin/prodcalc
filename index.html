@@ -75,7 +75,9 @@
               <p class="caption">Для первой оценки</p>
               <div style="max-width: 100%;">
                 <div class="resizing-input">
-                  <input type="text" id="T1" placeholder="00.00" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+                  <input type="text" id="T1" placeholder="00.00" onkeydown="confidenceInterval1(); difference()" onKeyPress="confidenceInterval1(); difference()"
+                    onKeyUp="confidenceInterval1();
+                  difference()">
                   <span class="widthspan"></span>
                 </div>
                 <span class="input">%</span>
@@ -85,7 +87,8 @@
 
               <p class="caption">на выборке</p>
               <input type="text" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-                data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval1()" onKeyUp="confidenceInterval1()">
+                data-politespace-decimal-mark="." placeholder="0 000" onkeydown="confidenceInterval1(); difference()" onKeyPress="confidenceInterval1(); difference()"
+                onKeyUp="confidenceInterval1(); difference()">
 
               <p class="caption">доверительный интервал</p>
               <div class="outputdiv">
@@ -99,7 +102,8 @@
             <p class="caption">Для второй оценки</p>
             <div style="max-width: 100%;">
               <div class="resizing-input">
-                <input type="text" id="T2" placeholder="00.00" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
+                <input type="text" id="T2" placeholder="00.00" onkeydown="confidenceInterval2(); difference()" onKeyPress="confidenceInterval2(); difference()"
+                  onKeyUp="confidenceInterval2(); difference()">
                 <span class="widthspan"></span>
               </div>
               <span class="input">%</span>
@@ -108,7 +112,8 @@
 
             <p class="caption">на выборке</p>
             <input type="text" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="0 000" onKeyPress="confidenceInterval2()" onKeyUp="confidenceInterval2()">
+              data-politespace-decimal-mark="." placeholder="0 000" onkeydown="confidenceInterval2(); difference()" onKeyPress="confidenceInterval2(); difference()"
+              onKeyUp="confidenceInterval2(); difference()">
 
             <p class="caption">доверительный интервал</p>
             <div class="outputdiv">
@@ -205,8 +210,10 @@
             var numberFormat = new Intl.NumberFormat('ru-RU');
             var tempResult = (zValue * zValue) * ((1 - T) * T) / (Q * Q);
             result.value = numberFormat.format(math.round(tempResult));
+            return;
           } else {
             result.value = 0;
+            return;
           }
         }
 
@@ -221,8 +228,10 @@
             var numberFormat = new Intl.NumberFormat('ru-RU');
 
             result.value = numberFormat.format(math.round(tempResult));
+            return;
           } else {
             result.value = 0;
+            return;
           }
 
         }
@@ -238,6 +247,7 @@
 
           var resultL = document.getElementById("difference_result1");
           var resultR = document.getElementById("difference_result2");
+          var backgroud = document.getElementById("backgroud");
 
           if (Q1 > 0 && Q1 < 1 && Q2 > 0 && Q2 < 1) {
             var tempL = Number((T2 - T1) - (zValue * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
@@ -250,17 +260,21 @@
             resultL.value = Number.parseFloat(tempL * 100).toPrecision(3);
             resultR.value = Number.parseFloat(tempR * 100).toPrecision(3);
 
-            var backgroud = document.getElementById("backgroud");
+
 
             if (tempL < 0 && tempR > 0) {
               backgroud.style.backgroundColor = "#ffefeb"
+              return;
             } else {
               backgroud.style.backgroundColor = "#eeffeb"
+              return;
             }
 
           } else {
             resultL.value = Number.parseFloat(0).toPrecision(3);
             resultR.value = Number.parseFloat(0).toPrecision(3);
+            backgroud.style.backgroundColor = "#f7f7f7";
+            return;
           }
         }
 
@@ -274,9 +288,11 @@
             var tempQ = Number(zValue * math.sqrt(T * (1 - T) / N));
             resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(3);
             difference.call();
+            return;
 
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
+            return;
           }
 
         }
@@ -291,8 +307,10 @@
             var tempQ = Number(zValue * math.sqrt(T * (1 - T) / N));
             resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(3);
             difference.call();
+            return;
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
+            return;
           }
 
         }
