@@ -247,8 +247,8 @@
             console.log("tempL " + tempL)
             var tempR = Number((T2 - T1) + (zValue * math.sqrt((T1 * (1 - T1) / N1) + (T2 * (1 - T2) / N2))));
 
-            resultL.value = Number.parseFloat(tempL * 100).toPrecision(2);
-            resultR.value = Number.parseFloat(tempR * 100).toPrecision(2);
+            resultL.value = Number.parseFloat(tempL * 100).toPrecision(3);
+            resultR.value = Number.parseFloat(tempR * 100).toPrecision(3);
 
             var backgroud = document.getElementById("backgroud");
 
@@ -272,7 +272,7 @@
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(zValue * math.sqrt(T * (1 - T) / N));
-            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
+            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(3);
             difference.call();
 
           } else {
@@ -289,7 +289,7 @@
 
           if (T > 0 && T < 1 && N > 0) {
             var tempQ = Number(zValue * math.sqrt(T * (1 - T) / N));
-            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(2);
+            resultQ.value = Number.parseFloat(tempQ * 100).toPrecision(3);
             difference.call();
           } else {
             resultQ.value = Number.parseFloat(0).toPrecision(3);
