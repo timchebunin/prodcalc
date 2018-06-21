@@ -64,6 +64,37 @@ input[type="number"]::-webkit-outer-spin-button {
   max-width: 100%;
   margin: 0 0 50px 0;
 }
+footer {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+
+  opacity: 0.5;
+
+}
+a:link {
+  text-decoration: underline;
+  color: inherit;
+}
+
+a:visited {
+  text-decoration: underline;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #c7779f;
+
+  transition-property: color;
+  transition-duration: 0.33s;
+  transition-timing-function: ease-out;
+}
+
+a:active {
+  text-decoration: underline;
+  color: #c80064;
+}
 
 @media only screen and (min-width: 768px) {
   input {
