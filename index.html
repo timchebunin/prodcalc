@@ -45,8 +45,8 @@
   <link href="https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800,900" rel="stylesheet">
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
-
   <link rel="stylesheet" href="./node_modules/politespace/dist/politespace.css">
+
   <link rel="stylesheet" href="./node_modules/politespace/dist/libs/libs.css">
   <script src="./node_modules/politespace/dist/libs/libs.js"></script>
   <script src="./node_modules/politespace/dist/politespace.js"></script>
@@ -83,9 +83,8 @@
 
 
               <p class="caption">на выборке</p>
-              <input type="text" id="N1" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-                data-politespace-decimal-mark="." placeholder="0 000" onkeydown="confidenceInterval1(); difference()" onKeyPress="confidenceInterval1(); difference()"
-                onKeyUp="confidenceInterval1(); difference()">
+              <input type="text" id="N1" placeholder="0" onkeydown="confidenceInterval1(); difference()" onKeyPress="confidenceInterval1(); difference()"
+                onKeyUp="confidenceInterval1(); difference()" onfocus="formatTextToNumber('N1')" onfocusout="formatNumberToText('N1')">
 
               <p class="caption">доверительный интервал</p>
               <div class="outputdiv">
@@ -108,9 +107,8 @@
 
 
             <p class="caption">на выборке</p>
-            <input type="text" id="N2" data-politespace data-politespace-grouplength="3" data-politespace-reverse data-politespace-delimiter=" "
-              data-politespace-decimal-mark="." placeholder="0 000" onkeydown="confidenceInterval2(); difference()" onKeyPress="confidenceInterval2(); difference()"
-              onKeyUp="confidenceInterval2(); difference()">
+            <input type="text" id="N2" placeholder="0" onkeydown="confidenceInterval2(); difference()" onKeyPress="confidenceInterval2(); difference()"
+              onKeyUp="confidenceInterval2(); difference();" onfocus="formatTextToNumber('N2')" onfocusout="formatNumberToText('N2')">
 
             <p class="caption">доверительный интервал</p>
             <div class="outputdiv">
@@ -198,6 +196,28 @@
 
       <script>
         //if you change anything here I will find and kill you! Do you hear me?!
+
+        $('#number').on("keyup", function (e) {
+          if (e.keyCode !== 39 && e.keyCode !== 37) {
+            this.value = this.value.replace(/ /g, '');
+            var number = this.value;
+            this.value = number.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            console.log(this.value);
+          }
+        });
+
+        function formatNumberToText(id) {
+          var field = document.getElementById(id);
+          field.value = field.value.replace(/ /g, "");
+          field.value = field.value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+          return;
+        }
+        function formatTextToNumber(id) {
+          var field = document.getElementById(id);
+          field.value = field.value.replace(" ", "");
+          return;
+        }
+
         function sampleSize() {
           var result = document.getElementById("sampleSize_result");
           var T = Number(document.getElementById("sampleSize_T").value.replace(",", ".")) / 100;
@@ -277,7 +297,7 @@
 
         function confidenceInterval1() {
           var T = Number(document.getElementById("T1").value.replace(",", ".")) / 100;
-          var N = Number(document.getElementById("N1").value);
+          var N = Number(document.getElementById("N1").value.replace(" ", ""));
 
           var resultQ = document.getElementById("Q1_result");
 
@@ -296,7 +316,7 @@
 
         function confidenceInterval2() {
           var T = Number(document.getElementById("T2").value.replace(",", ".")) / 100;
-          var N = Number(document.getElementById("N2").value);
+          var N = Number(document.getElementById("N2").value.replace(" ", ""));
 
           var resultQ = document.getElementById("Q2_result");
 
